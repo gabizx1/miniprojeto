@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <title>miniprojeto</title>
+</head>
+<body>
+     <script>
+        const produto=[]
+        var resp;
+
+        do{
+            resp=prompt("1-Cadastrar\n2-Buscar\n3-Remover\n4-Atualizar\n5-Visualizar\n6-Sair")
+            if(resp==1){
+                const nome=prompt("Nome do produto:")
+                const preco=prompt("Preço do produto:")
+                const descri=prompt("Descrição do produto:")
+                produto.push({nome, preco, descri});
+            }
+
+            else if(resp==2){
+                const busca=prompt("Qual o produto deseja buscar:")
+                    produto.forEach(item=>{
+                        if(item.nome.includes(busca)){
+                            alert(`Nome: ${item.nome}\nPreço: ${item.preco}\nDescrição: ${item.descri}`)
+                        }
+                    });
+            }
+            else if(resp==3){
+                const remo= prompt("Qual o nome do produto que deseja remover?")
+                produto.shift();
+            }
+
+            else if(resp==4){
+                function atualizarProduto(produto, nome, novoNome, novoPreco, novaDescri) {               
+                    for (let i = 0; i < produto.length; i++) {
+                        if (produto[i].nome === nome) {
+                            produto[i].nome = novoNome;
+                            produto[i].preco = novoPreco;
+                            produto[i].descricao = novaDescri;
+                            var encontrado = true;
+                            break;
+                        }
+                    }
+                    return encontrado;
+                }                         
+                let nomeProduto = prompt("Digite o nome do produto que quer ser atualizado:");
+                let novoNome = prompt("Digite o novo nome:");
+                let novoPreco = prompt("Digite o novo preço:");
+                let novaDescricao = prompt("Digite a nova descrição:");
+                
+                if (atualizarProduto(produto, nomeProduto, novoNome, novoPreco, novaDescricao)) {
+                    let resultado = "Produtos após atualização:\n";
+                    produto.forEach(function(produto) {
+                        resultado += `Nome: ${produto.nome}, Preço: ${produto.preco}, Descrição: ${produto.descricao}\n`;
+                    });
+                    alert(resultado);
+                } else {
+                    alert("Produto não encontrado.");
+                }
+            }
+
+            else if(resp==5){
+                let resultado = "Dados dos produtos:\n";
+                    produto.forEach(function(produto) {
+                        resultado += `Nome: ${produto.nome}\nPreço: ${produto.preco} \nDescrição: ${produto.descri}\n`;
+                    });
+                alert(resultado);
+            }              
+        }
+        while(resp!=6)
+
+     </Script>
+</body>
+</html>
